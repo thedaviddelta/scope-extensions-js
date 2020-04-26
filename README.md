@@ -1,15 +1,52 @@
 # scope-extensions-js
 
-[![Build Status](https://travis-ci.com/TheDavidDelta/scope-extensions-js.svg?branch=master)](https://travis-ci.com/TheDavidDelta/scope-extensions-js)
-[![License](https://img.shields.io/github/license/TheDavidDelta/scope-extensions-js)](./LICENSE)
-
 <img src="img/logo.png" width="128" align="right">
+
+[![Build Status](https://travis-ci.com/TheDavidDelta/scope-extensions-js.svg?branch=master)](https://travis-ci.com/TheDavidDelta/scope-extensions-js)
+[![NPM Version](https://img.shields.io/npm/v/scope-extensions-js)](https://www.npmjs.com/package/scope-extensions-js)
+[![License](https://img.shields.io/github/license/TheDavidDelta/scope-extensions-js)](./LICENSE)
 
 Package for using [Kotlin's Scope Function Extensions](https://kotlinlang.org/docs/reference/scope-functions.html) on JavaScript and TypeScript.
 
 It also supports the use of the new [Optional Chaining Operator](https://github.com/tc39/proposal-optional-chaining), bringing the logic of [Kotlin's Null Safe Calls](https://kotlinlang.org/docs/reference/null-safety.html) to the JavaScript world.
 
----
+## Instalation
+
+Just install the package using NPM
+
+```shell
+npm i --save scope-extensions-js
+```
+
+and import it directly to any file.
+
+```javascript
+require("scope-extensions-js");
+```
+
+You can also use ES6 syntax.
+
+```javascript
+import "scope-extensions-js";
+```
+
+For browser, reference directly to `node_modules` path
+
+```html
+<script src="node_modules/scope-extensions-js/dist/index.js"></script>
+```
+
+or use it without instalation by CDNs (`unpkg`/`jsdelivr`).
+
+```html
+<script src="https://unpkg.com/scope-extensions-js@1.0.2"></script>
+```
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/scope-extensions-js@1.0.2"></script>
+```
+
+Note that it's not needed to use the `type="module"` tag.
 
 ## Usage
 
