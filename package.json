@@ -1,7 +1,7 @@
 {
   "name": "scope-extensions-js",
   "version": "1.0.0",
-  "description": "Scope Extensions",
+  "description": "Package for using Kotlin's Scope Function Extensions on JavaScript and TypeScript",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
