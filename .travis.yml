@@ -1,0 +1,18 @@
+language: node_js
+
+node_js:
+  - lts/*
+
+before_script:
+  - npm run build
+
+script:
+  - npm test
+
+deploy:
+  - provider: npm
+    email: $NPM_EMAIL
+    token: $NPM_TOKEN
+    skip_cleanup: true
+    on:
+      tags: true
