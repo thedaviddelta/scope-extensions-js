@@ -4,7 +4,8 @@
   "description": "Scope Extensions",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -29,6 +30,10 @@
   },
   "homepage": "https://github.com/TheDavidDelta/scope-extensions-js#readme",
   "devDependencies": {
-    "typescript": "^3.8.3"
+    "typescript": "^3.8.3",
+    "jest": "^23.6.0",
+    "@types/jest": "^23.3.14",
+    "ts-jest": "^23.10.5",
+    "braces": ">=2.3.1"
   }
 }
