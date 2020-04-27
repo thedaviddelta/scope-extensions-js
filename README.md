@@ -10,7 +10,7 @@ Package for using [Kotlin's Scope Function Extensions](https://kotlinlang.org/do
 
 It also supports the use of the new [Optional Chaining Operator](https://github.com/tc39/proposal-optional-chaining), bringing the logic of [Kotlin's Null Safe Calls](https://kotlinlang.org/docs/reference/null-safety.html) to the JavaScript world.
 
-## Instalation
+## Installation
 
 Just install the package using NPM
 
@@ -36,17 +36,17 @@ For browser, reference directly to `node_modules` path
 <script src="node_modules/scope-extensions-js/dist/index.js"></script>
 ```
 
-or use it without instalation by CDNs (`unpkg`/`jsdelivr`).
+or use it without installation by CDNs (`unpkg`/`jsdelivr`).
 
 ```html
-<script src="https://unpkg.com/scope-extensions-js@1.0.2"></script>
+<script src="https://unpkg.com/scope-extensions-js@1.0.5"></script>
 ```
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/scope-extensions-js@1.0.2"></script>
+<script src="https://cdn.jsdelivr.net/npm/scope-extensions-js@1.0.5"></script>
 ```
 
-Note that it's not needed to use the `type="module"` tag.
+Note that the `type="module"` tag is not needed.
 
 ## Usage
 
@@ -62,7 +62,7 @@ obj.let(it => {
 }); // prints 30
 ```
 
-This way, you can execute a block of code only if a value is neither null non undefined.
+This way, you can execute a block of code only if a value is neither null nor undefined.
 
 ```typescript
 const str: string | null = await getData();
@@ -82,9 +82,9 @@ else
     console.log("Still not initialized");
 ```
 
-## Diferences
+## Differences
 
-We could group the 4 extensions into 2 groups of 2 groups each, based on both the argument type and the return value:
+We could group the 4 extensions into 2 groups of 2 each, based on both the argument type and the return value:
 + `let` & `also` receive the caller instance as a function parameter, and `run` & `apply` receive the caller instance as the function context (`this`).
 + `let` & `run` return the function result (`return`) value, and `also` & `apply` return the caller instance (`this`).
 
@@ -95,10 +95,11 @@ Summed up in this table:
 | **Returns result** | `let`             | `run`              |
 | **Returns `this`** | `also`            | `apply`            |
 
-`let` & `also` can be called with standard lambda/arrow functions, but because JavaScript arrow functions don't have an own `this` context, `run` & `apply` have to be called with standard functions.
+
+Note that `let` & `also` can be called with standard lambda/arrow functions, but because JavaScript arrow functions don't have an own `this` context, `run` & `apply` have to be called with standard functions.
 
 Here is an example of each one of them:
-+ let
++ `let`
 ```typescript
 const data: Array<number> | null = await idsFromFile();
 
@@ -106,7 +107,7 @@ const str = data?.let(it =>
     processToString(it);
 ) ?? "empty";
 ```
-+ also
++ `also`
 ```typescript
 const list: Array<string> = model.getNames();
 
@@ -123,7 +124,7 @@ const filtered = list.also(it => {
     console.log(it);
 });
 ```
-+ run
++ `run`
 ```typescript
 const list: Array<object> | undefined = currentAcc?.getContacts();
 
@@ -133,7 +134,7 @@ const lastsByName = list?.run(function() {
     return this.slice(0, 3);
 });
 ```
-+ apply
++ `apply`
 ```typescript
 const obj = { name: "Daniel", age: 30 };
 
