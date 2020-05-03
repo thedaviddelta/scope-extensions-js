@@ -39,11 +39,11 @@ For browser, reference directly to `node_modules` path
 or use it without installation by CDNs (`unpkg`/`jsdelivr`).
 
 ```html
-<script src="https://unpkg.com/scope-extensions-js@1.0.5"></script>
+<script src="https://unpkg.com/scope-extensions-js@1.1.0"></script>
 ```
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/scope-extensions-js@1.0.5"></script>
+<script src="https://cdn.jsdelivr.net/npm/scope-extensions-js@1.1.0"></script>
 ```
 
 Note that the `type="module"` tag is not needed.
@@ -82,9 +82,21 @@ else
     console.log("Still not initialized");
 ```
 
+The usage of `takeIf` & `takeUnless` is a bit different. You can call any value with `takeIf` and it will return the caller instance if the predicate is `true`, or `undefined` if it's `false` (and vice versa when using `takeUnless`).
+
+```typescript
+const account = await getCurrent();
+
+account.takeIf(it => {
+    return list.includes(it.id);
+})?.also(it => {
+    console.log(it);
+}) ?? console.log("Not included");
+```
+
 ## Differences
 
-We could group the 4 extensions into 2 groups of 2 each, based on both the argument type and the return value:
+We could group the 4 main extensions into 2 groups of 2 each, based on both the argument type and the return value:
 + `let` & `also` receive the caller instance as a function parameter, and `run` & `apply` receive the caller instance as the function context (`this`).
 + `let` & `run` return the function result (`return`) value, and `also` & `apply` return the caller instance (`this`).
 

@@ -241,3 +241,141 @@ describe("apply", () => {
         expect(obj.name).toBe("Daniel");
     });
 });
+
+describe("takeIf", () => {
+    test("works with object", () => {
+        const obj = { name: "Daniel", age: 30 };
+        obj.takeIf(it => !!expect(it).toBeInstanceOf(Object));
+    });
+    test("works with number", () => {
+        const number = 5;
+        number.takeIf(it => !!expect(typeof it).toBe("number"));
+        number.takeIf(it => !!expect(it).toBe(number));
+    });
+    test("works with string", () => {
+        const string = "Hello world";
+        string.takeIf(it => !!expect(typeof it).toBe("string"));
+        string.takeIf(it => !!expect(it).toBe(string));
+    });
+    test("works with boolean", () => {
+        const boolean = true;
+        boolean.takeIf(it => !!expect(typeof it).toBe("boolean"));
+        boolean.takeIf(it => expect(it).toBe(boolean));
+    });
+    test("returns instance if true", () => {
+        const obj = { name: "Daniel", age: 30 };
+        const value = obj.takeIf(it => it.age < 40);
+        expect(value).toBe(obj);
+    });
+    test("returns undefined if false", () => {
+        const obj = { name: "Daniel", age: 30 };
+        const value = obj.takeIf(it => it.age > 40);
+        expect(value).toBeUndefined();
+    });
+    test("true without predicate", () => {
+        const boolean = true;
+        const value = boolean.takeIf();
+        expect(value).toBe(boolean);
+        expect(value).toBe(true);
+    });
+    test("false without predicate", () => {
+        const boolean = false;
+        const value = boolean.takeIf();
+        expect(value).toBeUndefined();
+    });
+    test("modifies value", () => {
+        const obj = { name: "Daniel", age: 30 };
+        const value = obj.takeIf(it => {
+            it.name = "George";
+            return it.age < 40;
+        });
+        expect(value).toBe(obj);
+        expect(value.name).toBe("George");
+    });
+    test("works with nullable", () => {
+        const obj: object | null = { name: "Daniel", age: 30 };
+        const value = obj?.takeIf(it => it["age"] < 40);
+        expect(value).toBe(obj);
+    });
+    test("fails with null", () => {
+        const obj: object | null = null;
+        const value = obj?.takeIf(it => it["age"] < 40);
+        expect(value).toBeUndefined();
+    });
+    test("fails with undefined", () => {
+        const obj: object | undefined = undefined;
+        const value = obj?.takeIf(it => it["age"] < 40);
+        expect(value).toBeUndefined();
+    });
+});
+
+describe("takeUnless", () => {
+    test("works with object", () => {
+        const obj = { name: "Daniel", age: 30 };
+        obj.takeUnless(it => !!expect(it).toBeInstanceOf(Object));
+    });
+    test("works with number", () => {
+        const number = 5;
+        number.takeUnless(it => !!expect(typeof it).toBe("number"));
+    });
+    test("works with number", () => {
+        const number = 5;
+        number.takeUnless(it => !!expect(typeof it).toBe("number"));
+        number.takeUnless(it => !!expect(it).toBe(number));
+    });
+    test("works with string", () => {
+        const string = "Hello world";
+        string.takeUnless(it => !!expect(typeof it).toBe("string"));
+        string.takeUnless(it => !!expect(it).toBe(string));
+    });
+    test("works with boolean", () => {
+        const boolean = true;
+        boolean.takeUnless(it => !!expect(typeof it).toBe("boolean"));
+        boolean.takeUnless(it => expect(it).toBe(boolean));
+    });
+    test("returns undefined if true", () => {
+        const obj = { name: "Daniel", age: 30 };
+        const value = obj.takeUnless(it => it.age < 40);
+        expect(value).toBeUndefined();
+    });
+    test("returns instance if false", () => {
+        const obj = { name: "Daniel", age: 30 };
+        const value = obj.takeUnless(it => it.age > 40);
+        expect(value).toBe(obj);
+    });
+    test("true without predicate", () => {
+        const boolean = true;
+        const value = boolean.takeUnless();
+        expect(value).toBeUndefined();
+    });
+    test("false without predicate", () => {
+        const boolean = false;
+        const value = boolean.takeUnless();
+        expect(value).toBe(boolean);
+        expect(value).toBe(false);
+    });
+    test("modifies value", () => {
+        const obj = { name: "Daniel", age: 30 };
+        const value = obj.takeUnless(it => {
+            it.name = "George";
+            return it.age < 40;
+        });
+        expect(value).toBeUndefined();
+        expect(obj.name).toBe("George");
+    });
+    test("works with nullable", () => {
+        const obj: object | null = { name: "Daniel", age: 30 };
+        const value = obj?.takeUnless(it => it["age"] > 40);
+        expect(value).toBe(obj);
+    });
+    test("fails with null", () => {
+        const obj: object | null = null;
+        const value = obj?.takeUnless(it => it["age"] > 40);
+        expect(value).toBeUndefined();
+    });
+    test("fails with undefined", () => {
+        const obj: object | undefined = undefined;
+        const value = obj?.takeUnless(it => it["age"] > 40);
+        expect(value).toBeUndefined();
+    });
+});
