@@ -6,8 +6,19 @@ describe("let", () => {
         obj.let(it => expect(it).toBeInstanceOf(Object));
     });
     test("works with number", () => {
-        const number: number = 5;
+        const number = 5;
         number.let(it => expect(typeof it).toBe("number"));
+        number.let(it => expect(it).toBe(number));
+    });
+    test("works with string", () => {
+        const string = "Hello world";
+        string.let(it => expect(typeof it).toBe("string"));
+        string.let(it => expect(it).toBe(string));
+    });
+    test("works with boolean", () => {
+        const boolean = true;
+        boolean.let(it => expect(typeof it).toBe("boolean"));
+        boolean.let(it => expect(it).toBe(boolean));
     });
     test("returns value", () => {
         const obj = { name: "Daniel", age: 30 };
@@ -39,6 +50,17 @@ describe("also", () => {
     test("works with number", () => {
         const number = 5;
         number.also(it => expect(typeof it).toBe("number"));
+        number.also(it => expect(it).toBe(number));
+    });
+    test("works with string", () => {
+        const string = "Hello world";
+        string.also(it => expect(typeof it).toBe("string"));
+        string.also(it => expect(it).toBe(string));
+    });
+    test("works with boolean", () => {
+        const boolean = true;
+        boolean.also(it => expect(typeof it).toBe("boolean"));
+        boolean.also(it => expect(it).toBe(boolean));
     });
     test("returns instance", () => {
         const obj = { name: "Daniel", age: 30 };
@@ -87,6 +109,27 @@ describe("run", () => {
         number.run(function() {
             expect(typeof this).toBe("number");
         });
+        number.run(function() {
+            expect(this).toBe(number);
+        });
+    });
+    test("works with string", () => {
+        const string = "Hello world";
+        string.run(function() {
+            expect(typeof this).toBe("string");
+        });
+        string.run(function() {
+            expect(this).toBe(string);
+        });
+    });
+    test("works with boolean", () => {
+        const boolean = true;
+        boolean.run(function() {
+            expect(typeof this).toBe("boolean");
+        });
+        boolean.run(function() {
+            expect(this).toBe(boolean);
+        });
     });
     test("returns value", () => {
         const obj = { name: "Daniel", age: 30 };
@@ -129,6 +172,27 @@ describe("apply", () => {
         const number = 5;
         number.apply(function() {
             expect(typeof this).toBe("number");
+        });
+        number.apply(function() {
+            expect(this).toBe(number);
+        });
+    });
+    test("works with string", () => {
+        const string = "Hello world";
+        string.apply(function() {
+            expect(typeof this).toBe("string");
+        });
+        string.apply(function() {
+            expect(this).toBe(string);
+        });
+    });
+    test("works with boolean", () => {
+        const boolean = true;
+        boolean.apply(function() {
+            expect(typeof this).toBe("boolean");
+        });
+        boolean.apply(function() {
+            expect(this).toBe(boolean);
         });
     });
     test("returns instance", () => {
